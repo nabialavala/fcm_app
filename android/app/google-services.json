@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654998396295",
+    "project_id": "fcm-project-nabia",
+    "storage_bucket": "fcm-project-nabia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654998396295:android:80b0c16eb86dd44c3a4722",
+        "android_client_info": {
+          "package_name": "com.example.fcm_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1FnnjhE-DjZMTECpjqC0mx2degzZaYkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
