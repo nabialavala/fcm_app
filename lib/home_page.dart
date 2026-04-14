@@ -22,18 +22,34 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _initializeFCM() async {
-    await  _fcmService.initialize(onData: (message) {
-      setState(() {
-        statusText = message.notification?.title ?? 'Payload received';
-        imagePath = 'assets/images/${message.data['asset'] ?? 'default'}.png';
-      });
-    });
+    await _fcmService.initialize(
+      onData: (message) {
+        final assetName = message.data['asset'];
+        final payloadMessage = message.data['message'];
+
+        setState(() {
+          statusText = payloadMessage ??
+              message.notification?.body ??
+              message.notification?.title ??
+              'Payload received';
+
+          imagePath = assetName != null && assetName.toString().isNotEmpty
+              ? 'assets/images/$assetName.png'
+              : 'assets/images/default.png';
+        });
+
+        print('Updated statusText: $statusText');
+        print('Updated imagePath: $imagePath');
+      },
+    );
 
     final token = await _fcmService.getToken();
 
     setState(() {
-      tokenText = token ?? 'Token not avaiable';
+      tokenText = token ?? 'Token not available';
     });
+
+    await FirebaseMessaging.instance.subscribeToTopic('test');
   }
 
   @override
